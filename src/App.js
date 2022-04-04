@@ -1,4 +1,4 @@
-import RequestCityName from './api/RequestAPICall';
+import { RequestCityName, API_units } from './api/RequestAPICall';
 
 function App() {
   RequestCityName('London')
