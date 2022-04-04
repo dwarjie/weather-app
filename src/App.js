@@ -1,7 +1,7 @@
-import ApiFunction from './api/ApiFunction';
+import RequestCityName from './api/RequestAPICall';
 
 function App() {
-  ApiFunction('London')
+  RequestCityName('London')
 
   return (
    <h1 className="text-3xl font-bold underline">
