@@ -1,3 +1,5 @@
+import { APIData } from './APIData';
+
 // This module if for API Calls
 // This is were the function for calling the data from Weather API
 const API_KEY = 'c1222125f4c158d3d81d2db8ef692f33';
@@ -18,20 +20,21 @@ async function RequestAPICall(url) {
 
 // this function will make the API request using city name
 async function RequestCityName(place) {
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${API_KEY}`;
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=${API_units}&appid=${API_KEY}`;
 	const res = await RequestAPICall(url);
-
-	// get the daily weather
-	RequestDailyWeather(res.coord.lat, res.coord.lon);
+	console.log(res)
+	RequestDailyWeather(res, res.coord.lat, res.coord.lon);
 }
 
 // this function will make the API request using longtitude and latitude 
 // this will provide the information for the next 7 days
 // it will use the lat, and lon result from RequestCityName
-async function RequestDailyWeather(lat, lon) {
+async function RequestDailyWeather(currentWeather, lat, lon) {
 	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=${API_units}&appid=${API_KEY}`;
 	const res = await RequestAPICall(url);
-	console.log(res);
+	console.log(res)
+
+	APIData.setAPIData(currentWeather, res);
 }
 
-export { RequestCityName, API_units };
+export { RequestCityName, RequestDailyWeather, API_units };

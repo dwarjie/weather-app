@@ -1,19 +1,41 @@
+import { RequestCityName, RequestDailyWeather } from './RequestAPICall';
 // This module contains all the data needed for the website
 // it will be imported to RequestAPICall in order to populate with data request
 
-export default function APIData() {
+// The data needed:
+// The weather (celcius or fahrenheit)
+// The icon for the weather (sunny, cloudy, rainy)
+// humidity
+// Chance of rain
+// wind speed
+// 7 days weather with weather and icon
+
+export const APIData = (function(){
 	let currentWeather; 
 	let dailyWeather;
 
-	// this will extract only the current weather info needed
-	function getCurrentWeather(res) {
-		
+	// pass the requested promise and extract only the data needed
+	function setAPIData(current, daily) {
+		currentWeather = {
+			placeName: current.name,
+			weatherTemp: current.main.temp,
+			weatherDesc: current.weather[0].main,
+			humidity: current.main.humidity,
+			rainChance: daily.daily[0].pop,
+			windSpeed: current.wind.speed
+		}
+
+		dailyWeather = daily.daily;
+
+		console.log(currentWeather)
+		console.log(dailyWeather)
 	}
 
-	// this will extract only the daily weather info needed
-	function getDailyWeather(res) {
-
+	// in order to access the data from the other modules
+	function getAPIData() {
+		return { currentWeather, dailyWeather }
 	}
 
-	return { getCurrentWeather, getDailyWeather };
-}
+
+	return { setAPIData, getAPIData };
+})();
