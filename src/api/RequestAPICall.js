@@ -22,7 +22,7 @@ async function RequestAPICall(url) {
 async function RequestCityName(place) {
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=${API_units}&appid=${API_KEY}`;
 	const res = await RequestAPICall(url);
-	console.log(res)
+
 	RequestDailyWeather(res, res.coord.lat, res.coord.lon);
 }
 
@@ -32,7 +32,6 @@ async function RequestCityName(place) {
 async function RequestDailyWeather(currentWeather, lat, lon) {
 	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=${API_units}&appid=${API_KEY}`;
 	const res = await RequestAPICall(url);
-	console.log(res)
 
 	APIData.setAPIData(currentWeather, res);
 }

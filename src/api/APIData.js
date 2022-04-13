@@ -26,16 +26,15 @@ export const APIData = (function(){
 		}
 
 		dailyWeather = daily.daily;
-
-		console.log(currentWeather)
-		console.log(dailyWeather)
 	}
 
-	// in order to access the data from the other modules
-	function getAPIData() {
-		return { currentWeather, dailyWeather }
+	function getCurrentWeather() {
+		return currentWeather;	
 	}
 
+	function getDailyWeather() {
+		return dailyWeather;	
+	}
 
-	return { setAPIData, getAPIData };
+	return { setAPIData, getCurrentWeather, getDailyWeather };
 })();

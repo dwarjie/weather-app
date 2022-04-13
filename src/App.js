@@ -1,12 +1,13 @@
-import { RequestCityName } from './api/RequestAPICall';
+import React from "react";
+
+// components
+import SearchBar from "./components/SearchBar";
 
 function App() {
-  RequestCityName('Japan')
-
   return (
-   <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1> 
+    <div className="w-[90%] mt-6 mx-auto text-primaryColor">
+      <SearchBar/>
+    </div>
   );
 }
 
