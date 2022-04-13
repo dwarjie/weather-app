@@ -4,6 +4,7 @@ import React from "react";
 import SearchBar from "./components/SearchBar";
 import SideInfo from "./components/SideInfo";
 import MainInfo from "./components/MainInfo";
+import DailyInfo from "./components/DailyInfo";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <MainInfo/> 
             <SideInfo />
           </div>
+          <DailyInfo />
         </div>
       </div>
     </div>
