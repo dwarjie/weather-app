@@ -3,6 +3,7 @@ import React from "react";
 // components
 import SearchBar from "./components/SearchBar";
 import SideInfo from "./components/SideInfo";
+import MainInfo from "./components/MainInfo";
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
       <div className="w-full h-full bg-overlay opacity-[60%]">
         <div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
           <SearchBar />
-          <SideInfo />
+          <div className="sm: flex flex-row justify-between items-start">
+            <MainInfo/> 
+            <SideInfo />
+          </div>
         </div>
       </div>
     </div>
