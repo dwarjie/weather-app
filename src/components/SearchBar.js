@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SearchBar = () => {
-    return (
-        <div>
-            <input className="bg-transparent border-primaryColor border-b-2 w-full" type="text" placeholder="Search Place"/>
-        </div>
-    );
-}
+const SearchBar = (props) => {
+	const [inputPlace, setInputPlace] = useState({
+		place: "",
+	});
+
+	const onChange = (e) => {
+		setInputPlace({
+			...inputPlace,
+			place: e.target.value,
+		});
+	};
+
+	return (
+		<div>
+			<input
+				className="bg-transparent border-primaryColor border-b-2 w-full"
+				type="text"
+				placeholder="Search Place"
+				value={inputPlace.place}
+				name="place"
+				onChange={onChange}
+				onKeyUp={(e) => {
+					props.onKeyEnter(e, inputPlace.place);
+				}}
+			/>
+		</div>
+	);
+};
 
 export default SearchBar;

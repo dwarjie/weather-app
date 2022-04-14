@@ -1,4 +1,3 @@
-import { RequestCityName, RequestDailyWeather } from './RequestAPICall';
 // This module contains all the data needed for the website
 // it will be imported to RequestAPICall in order to populate with data request
 
