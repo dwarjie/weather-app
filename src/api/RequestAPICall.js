@@ -21,9 +21,11 @@ async function RequestAPICall(url) {
 // this function will make the API request using city name
 async function RequestCityName(place) {
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=${API_units}&appid=${API_KEY}`;
-	const res = await RequestAPICall(url);
-
-	RequestDailyWeather(res, res.coord.lat, res.coord.lon);
+	const resp = await fetch(url);
+	// check if the resp is not usable
+	if (!resp.ok) throw new Error(resp.statusText);
+	return resp.json();
+	// RequestDailyWeather(res, res.coord.lat, res.coord.lon);
 }
 
 // this function will make the API request using longtitude and latitude

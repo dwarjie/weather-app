@@ -26,8 +26,7 @@ const PageContainer = () => {
 
 	const requestCityName = (e, place) => {
 		if (e.key === "Enter") {
-			RequestCityName(place);
-			let res = APIData.getCurrentWeather();
+			let res = RequestCityName(place);
 			console.log(res);
 		}
 	};
