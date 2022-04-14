@@ -7,7 +7,7 @@ import MainInfo from "./MainInfo";
 import DailyInfo from "./DailyInfo";
 
 // API classes
-import { RequestCityName } from "../api/RequestAPICall";
+import { RequestCityName, RequestDailyWeather } from "../api/RequestAPICall";
 import { APIData } from "../api/APIData";
 
 const PageContainer = () => {
@@ -24,12 +24,20 @@ const PageContainer = () => {
 	// this is for the daily future weather data
 	const [dailyWeatherData, setDailyWeatherData] = useState([]);
 
-	const requestCityName = (e, place) => {
+	async function requestCityName(e, place) {
 		if (e.key === "Enter") {
-			let res = RequestCityName(place);
-			console.log(res);
+			// request using city name
+			let currentRes = await RequestCityName(place);
+			console.log(currentRes);
+
+			// request using lat and lon
+			let dailyRes = await RequestDailyWeather(
+				currentRes.coord.lat,
+				currentRes.coord.lon
+			);
+			console.log(dailyRes);
 		}
-	};
+	}
 
 	return (
 		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[100vh] ">
