@@ -24,19 +24,36 @@ const PageContainer = () => {
 	// this is for the daily future weather data
 	const [dailyWeatherData, setDailyWeatherData] = useState([]);
 
+	// set all the needed data to currentWeather and dailyWeather
+	const setAPIData = (current, daily) => {
+		setCurrentWeatherData({
+			placeName: current.name,
+			weatherTemp: current.main.temp,
+			weatherDesc: current.weather[0].main,
+			humidity: current.main.humidity,
+			rainChance: daily.daily[0].pop,
+			windSpeed: current.wind.speed,
+		});
+		setDailyWeatherData(daily.daily);
+	};
+
 	async function requestCityName(e, place) {
 		if (e.key === "Enter") {
 			// request using city name
 			let currentRes = await RequestCityName(place);
-			console.log(currentRes);
-
-			// request using lat and lon
-			let dailyRes = await RequestDailyWeather(
-				currentRes.coord.lat,
-				currentRes.coord.lon
-			);
-			console.log(dailyRes);
+			requestCityCoord(currentRes);
 		}
+	}
+
+	async function requestCityCoord(currentWeather) {
+		// request using lat and lon
+		let dailyRes = await RequestDailyWeather(
+			currentWeather.coord.lat,
+			currentWeather.coord.lon
+		);
+
+		// set all the data
+		setAPIData(currentWeather, dailyRes);
 	}
 
 	return (
