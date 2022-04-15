@@ -18,9 +18,8 @@ const PageContainer = () => {
 	async function fetchAPI(e, place) {
 		if (e.key === "Enter") {
 			let resp = await setCurrentWeatherData(place);
-			await setDailyWeatherData(resp);
-
-			console.log(currentWeatherData, dailWeatherData);
+			const coord = resp.coord;
+			await setDailyWeatherData(coord.lat, coord.lon);
 		}
 	}
 
@@ -31,7 +30,10 @@ const PageContainer = () => {
 					<SearchBar onKeyEnter={fetchAPI} />
 					<div className="sm: flex flex-row justify-between items-start">
 						<MainInfo />
-						<SideInfo />
+						<SideInfo
+							currentWeather={currentWeatherData}
+							dailyWeather={dailWeatherData}
+						/>
 					</div>
 					<DailyInfo />
 				</div>

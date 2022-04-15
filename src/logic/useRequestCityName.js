@@ -12,7 +12,15 @@ const useRequestCityName = () => {
 		// request using city name
 		let resp = await RequestCityName(place);
 		// request using the coord
-		setCurrentWeatherData(resp);
+		setCurrentWeatherData({
+			placeName: resp.name,
+			weatherTemp: resp.main.temp,
+			weatherDesc: resp.weather[0].main,
+			humidity: resp.main.humidity,
+			windSpeed: resp.wind.speed,
+			lat: resp.coord.lat,
+			lon: resp.coord.lon,
+		});
 
 		return resp;
 	}
