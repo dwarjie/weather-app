@@ -23,6 +23,10 @@ const SearchBar = (props) => {
 				onChange={onChange}
 				onKeyUp={(e) => {
 					props.onKeyEnter(e, inputPlace.place);
+					// if enter is clicked, clear the search bar
+					if (e.key === "Enter") {
+						setInputPlace({ place: "" });
+					}
 				}}
 			/>
 		</div>

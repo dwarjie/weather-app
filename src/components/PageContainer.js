@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // components
 import SearchBar from "./SearchBar";
@@ -6,61 +6,29 @@ import SideInfo from "./SideInfo";
 import MainInfo from "./MainInfo";
 import DailyInfo from "./DailyInfo";
 
-// API classes
-import { RequestCityName, RequestDailyWeather } from "../api/RequestAPICall";
-import { APIData } from "../api/APIData";
+// component logic
+import useRequestCityName from "../logic/useRequestCityName";
+import useRequestCityCoord from "../logic/useRequestCityCoord";
 
 const PageContainer = () => {
-	// this is for the current weather data
-	const [currentWeatherData, setCurrentWeatherData] = useState({
-		placeName: "",
-		weatherTemp: 0,
-		weatherDesc: "",
-		humidity: 0,
-		rainChance: 0,
-		windSpeed: 0,
-	});
+	const [currentWeatherData, setCurrentWeatherData] = useRequestCityName();
+	const [dailWeatherData, setDailyWeatherData] = useRequestCityCoord();
 
-	// this is for the daily future weather data
-	const [dailyWeatherData, setDailyWeatherData] = useState([]);
-
-	// set all the needed data to currentWeather and dailyWeather
-	const setAPIData = (current, daily) => {
-		setCurrentWeatherData({
-			placeName: current.name,
-			weatherTemp: current.main.temp,
-			weatherDesc: current.weather[0].main,
-			humidity: current.main.humidity,
-			rainChance: daily.daily[0].pop,
-			windSpeed: current.wind.speed,
-		});
-		setDailyWeatherData(daily.daily);
-	};
-
-	async function requestCityName(e, place) {
+	// request for city name and city coord
+	async function fetchAPI(e, place) {
 		if (e.key === "Enter") {
-			// request using city name
-			let currentRes = await RequestCityName(place);
-			requestCityCoord(currentRes);
+			let resp = await setCurrentWeatherData(place);
+			await setDailyWeatherData(resp);
+
+			console.log(currentWeatherData, dailWeatherData);
 		}
-	}
-
-	async function requestCityCoord(currentWeather) {
-		// request using lat and lon
-		let dailyRes = await RequestDailyWeather(
-			currentWeather.coord.lat,
-			currentWeather.coord.lon
-		);
-
-		// set all the data
-		setAPIData(currentWeather, dailyRes);
 	}
 
 	return (
 		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[100vh] ">
 			<div className="w-full h-full bg-overlay opacity-[60%]">
 				<div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
-					<SearchBar onKeyEnter={requestCityName} />
+					<SearchBar onKeyEnter={fetchAPI} />
 					<div className="sm: flex flex-row justify-between items-start">
 						<MainInfo />
 						<SideInfo />

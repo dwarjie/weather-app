@@ -1,5 +1,3 @@
-import { APIData } from "./APIData";
-
 // This module if for API Calls
 // This is were the function for calling the data from Weather API
 const API_KEY = "c1222125f4c158d3d81d2db8ef692f33";
