@@ -29,7 +29,7 @@ const PageContainer = () => {
 				<div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
 					<SearchBar onKeyEnter={fetchAPI} />
 					<div className="sm: flex flex-row justify-between items-start">
-						<MainInfo />
+						<MainInfo currentWeather={currentWeatherData} />
 						<SideInfo
 							currentWeather={currentWeatherData}
 							dailyWeather={dailWeatherData}

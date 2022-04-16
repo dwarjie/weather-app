@@ -11,15 +11,15 @@ const SideInfo = (props) => {
 		<div className="text-right sm: w-1/2 mt-12">
 			<SideInfoComponent
 				title="Humidity"
-				value={props.currentWeather.humidity}
+				value={`${props.currentWeather.humidity} %`}
 			/>
 			<SideInfoComponent
 				title="Chance of Rain"
-				value={`${props.dailyWeather.rainChance}%`}
+				value={`${props.dailyWeather.rainChance} %`}
 			/>
 			<SideInfoComponent
 				title="Wind Speed"
-				value={`${meterToKilometer()} Km/h`}
+				value={`${meterToKilometer()} km/h`}
 			/>
 		</div>
 	);
