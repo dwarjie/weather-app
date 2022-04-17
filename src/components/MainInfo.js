@@ -1,10 +1,9 @@
 import React from "react";
-import { WiCloudy } from "react-icons/wi";
 
 const MainInfo = (props) => {
 	return (
 		<div className="text-left sm: mt-24">
-			<WiCloudy className="sm: text-[9rem]" />
+			{props.weatherIcon}
 			<h2 className="font-semibold sm: text-[1.5rem]">
 				{props.currentWeather.weatherDesc}
 			</h2>
