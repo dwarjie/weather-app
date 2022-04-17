@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // components
 import SearchBar from "./SearchBar";
@@ -15,6 +15,21 @@ const PageContainer = () => {
 	const [currentWeatherData, setCurrentWeatherData] = useRequestCityName();
 	const [dailWeatherData, setDailyWeatherData] = useRequestCityCoord();
 	const [weatherIcon, setWeatherIcon] = useWeatherIcon();
+
+	// run this function in the initial page load
+	useEffect(() => {
+		async function initialLoad() {
+			let resp = await setCurrentWeatherData("Philippines");
+			const coord = resp.coord;
+			await setDailyWeatherData(coord.lat, coord.lon);
+
+			// get the icon base on the weather condition
+			getWeatherIcon(resp.weather[0].icon);
+		}
+
+		initialLoad();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	// request for city name and city coord
 	async function fetchAPI(e, place) {
