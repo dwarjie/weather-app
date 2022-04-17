@@ -16,30 +16,27 @@ const PageContainer = () => {
 	const [dailWeatherData, setDailyWeatherData] = useRequestCityCoord();
 	const [weatherIcon, setWeatherIcon] = useWeatherIcon();
 
-	// run this function in the initial page load
-	useEffect(() => {
-		async function initialLoad() {
-			let resp = await setCurrentWeatherData("Philippines");
-			const coord = resp.coord;
-			await setDailyWeatherData(coord.lat, coord.lon);
-
-			// get the icon base on the weather condition
-			getWeatherIcon(resp.weather[0].icon);
-		}
-
-		initialLoad();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// // run this function in the initial page load
+	// useEffect(() => {
+	// 	fetchAPI("Philippines");
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 	// request for city name and city coord
-	async function fetchAPI(e, place) {
-		if (e.key === "Enter") {
-			let resp = await setCurrentWeatherData(place);
-			const coord = resp.coord;
-			await setDailyWeatherData(coord.lat, coord.lon);
+	async function fetchAPI(place) {
+		let resp = await setCurrentWeatherData(place);
+		const coord = resp.coord;
+		await setDailyWeatherData(coord.lat, coord.lon);
 
-			// get the icon base on the weather condition
-			getWeatherIcon(resp.weather[0].icon);
+		// get the icon base on the weather condition
+		console.log(typeof dailWeatherData.daily);
+		getWeatherIcon(resp.weather[0].icon);
+	}
+
+	// request for city name and city coord
+	function searchPlace(e, place) {
+		if (e.key === "Enter") {
+			fetchAPI(place);
 		}
 	}
 
@@ -52,7 +49,7 @@ const PageContainer = () => {
 		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[100vh] ">
 			<div className="w-full h-full bg-overlay opacity-[60%]">
 				<div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
-					<SearchBar onKeyEnter={fetchAPI} />
+					<SearchBar onKeyEnter={searchPlace} />
 					<div className="sm: flex flex-row justify-between items-start">
 						<MainInfo
 							currentWeather={currentWeatherData}
@@ -63,7 +60,7 @@ const PageContainer = () => {
 							dailyWeather={dailWeatherData}
 						/>
 					</div>
-					<DailyInfo />
+					<DailyInfo dailyWeather={dailWeatherData} />
 				</div>
 			</div>
 		</div>

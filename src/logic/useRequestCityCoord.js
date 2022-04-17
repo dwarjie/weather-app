@@ -11,6 +11,7 @@ const useRequestCityCoord = () => {
 	async function requestCityCoord(lat, lon) {
 		// request using lat and lon
 		let dailyRes = await RequestDailyWeather(lat, lon);
+		console.log(dailyRes);
 		setDailyWeatherData({
 			daily: dailyRes.daily,
 			rainChance: dailyRes.daily[0].pop,
