@@ -13,11 +13,21 @@ const MainInfo = (props) => {
 	const handleUnit = () => {
 		props.unitChange();
 	};
+
+	const capitalizeWord = (str) => {
+		return str
+			.toLowerCase()
+			.split(" ")
+			.map(function (word) {
+				return word.replace(word[0], word[0].toUpperCase());
+			})
+			.join(" ");
+	};
 	return (
 		<div className="text-left sm: mt-24">
 			{props.weatherIcon}
 			<h2 className="font-semibold sm: text-[1.5rem]">
-				{props.currentWeather.weatherDesc}
+				{capitalizeWord(props.currentWeather.weatherDesc)}
 			</h2>
 			<h4 className="sm: text-base">{props.currentWeather.placeName}</h4>
 			<h1 className="font-bold sm: text-[2.5rem]">{`${Math.round(
