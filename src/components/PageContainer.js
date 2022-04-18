@@ -16,11 +16,11 @@ const PageContainer = () => {
 	const [dailWeatherData, setDailyWeatherData] = useRequestCityCoord();
 	const [weatherIcon, setWeatherIcon] = useWeatherIcon();
 
-	// // run this function in the initial page load
-	// useEffect(() => {
-	// 	fetchAPI("Philippines");
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
+	// run this function in the initial page load
+	useEffect(() => {
+		fetchAPI("Philippines");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	// request for city name and city coord
 	async function fetchAPI(place) {
@@ -46,7 +46,7 @@ const PageContainer = () => {
 	}
 
 	return (
-		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[100vh] ">
+		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[auto]">
 			<div className="w-full h-full bg-overlay opacity-[60%]">
 				<div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
 					<SearchBar onKeyEnter={searchPlace} />
