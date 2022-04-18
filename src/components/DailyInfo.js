@@ -13,24 +13,25 @@ const DailyInfo = (props) => {
 		"Friday",
 		"Saturday",
 	];
+
 	const displayDaily = () => {
+		if (props.dailyWeather.daily === undefined) return "";
+
 		return props.dailyWeather.daily.map((data, index) => {
-			return <DailyInfoComponent day={arrDays[index]} temp={data.temp.max} />;
+			if (index === 7) return "";
+			return (
+				<DailyInfoComponent
+					day={arrDays[index]}
+					temp={data.temp.max}
+					iconCode={data.weather[0].icon}
+				/>
+			);
 		});
 	};
 
 	return (
 		<div className="w-full sm: mt-16">
-			<ul>
-				{displayDaily()}
-				{/* <DailyInfoComponent day="Sunday" />
-				<DailyInfoComponent day="Monday" />
-				<DailyInfoComponent day="Tuesday" />
-				<DailyInfoComponent day="Wednesday" />
-				<DailyInfoComponent day="Thursday" />
-				<DailyInfoComponent day="Friday" />
-				<DailyInfoComponent day="Saturday" /> */}
-			</ul>
+			<ul>{displayDaily()}</ul>
 		</div>
 	);
 };
