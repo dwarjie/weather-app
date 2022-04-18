@@ -1,6 +1,9 @@
 import React from "react";
 
 const MainInfo = (props) => {
+	const handleUnit = () => {
+		props.unitChange();
+	};
 	return (
 		<div className="text-left sm: mt-24">
 			{props.weatherIcon}
@@ -11,7 +14,10 @@ const MainInfo = (props) => {
 			<h1 className="font-bold sm: text-[2.5rem]">{`${Math.round(
 				props.currentWeather.weatherTemp
 			)}°C`}</h1>
-			<button className="bg-primaryColor text-darkPrimary rounded-lg text-[.6rem] sm: w-[4.5rem] h-5">
+			<button
+				onClick={handleUnit}
+				className="bg-primaryColor text-darkPrimary rounded-lg text-[.6rem] sm: w-[4.5rem] h-5"
+			>
 				Display in °F
 			</button>
 		</div>

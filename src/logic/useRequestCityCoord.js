@@ -8,9 +8,9 @@ const useRequestCityCoord = () => {
 	// this is for the daily future weather data
 	const [dailyWeatherData, setDailyWeatherData] = useState({});
 
-	async function requestCityCoord(lat, lon) {
+	async function requestCityCoord(lat, lon, unit) {
 		// request using lat and lon
-		let dailyRes = await RequestDailyWeather(lat, lon);
+		let dailyRes = await RequestDailyWeather(lat, lon, unit);
 		console.log(dailyRes);
 		setDailyWeatherData({
 			daily: dailyRes.daily,

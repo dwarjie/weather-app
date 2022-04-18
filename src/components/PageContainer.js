@@ -10,10 +10,12 @@ import DailyInfo from "./DailyInfo";
 import useRequestCityName from "../logic/useRequestCityName";
 import useRequestCityCoord from "../logic/useRequestCityCoord";
 import useWeatherIcon from "../logic/useWeatherIcon";
+import useChangeUnit from "../logic/useChangeUnit";
 
 const PageContainer = () => {
 	const [currentWeatherData, setCurrentWeatherData] = useRequestCityName();
 	const [dailWeatherData, setDailyWeatherData] = useRequestCityCoord();
+	const [unitMeasure, setUnitMeasure] = useChangeUnit();
 	const [weatherIcon, setWeatherIcon] = useWeatherIcon();
 
 	// run this function in the initial page load
@@ -22,11 +24,17 @@ const PageContainer = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// call request again when unit measure changed
+	useEffect(() => {
+		fetchAPI(currentWeatherData.placeName);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [unitMeasure]);
+
 	// request for city name and city coord
 	async function fetchAPI(place) {
-		let resp = await setCurrentWeatherData(place);
+		let resp = await setCurrentWeatherData(place, unitMeasure);
 		const coord = resp.coord;
-		await setDailyWeatherData(coord.lat, coord.lon);
+		await setDailyWeatherData(coord.lat, coord.lon, unitMeasure);
 
 		// get the icon base on the weather condition
 		console.log(typeof dailWeatherData.daily);
@@ -45,6 +53,11 @@ const PageContainer = () => {
 		setWeatherIcon(icon);
 	}
 
+	const handUnitChange = () => {
+		console.log(unitMeasure);
+		setUnitMeasure();
+	};
+
 	return (
 		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[auto]">
 			<div className="w-full h-full bg-overlay opacity-[60%]">
@@ -54,6 +67,7 @@ const PageContainer = () => {
 						<MainInfo
 							currentWeather={currentWeatherData}
 							weatherIcon={weatherIcon}
+							unitChange={handUnitChange}
 						/>
 						<SideInfo
 							currentWeather={currentWeatherData}
