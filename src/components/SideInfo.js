@@ -4,6 +4,14 @@ import React from "react";
 import SideInfoComponent from "./SideInfoComponent";
 
 const SideInfo = (props) => {
+	let unit;
+
+	// check what is the unit measure
+	if (props.unitMeasure === "metric") {
+		unit = "km/h";
+	} else {
+		unit = "mph";
+	}
 	const meterToKilometer = () => {
 		return Math.round(props.currentWeather.windSpeed * (18 / 5));
 	};
@@ -19,7 +27,7 @@ const SideInfo = (props) => {
 			/>
 			<SideInfoComponent
 				title="Wind Speed"
-				value={`${meterToKilometer()} km/h`}
+				value={`${meterToKilometer()} ${unit}`}
 			/>
 		</div>
 	);

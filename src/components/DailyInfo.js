@@ -4,6 +4,15 @@ import React from "react";
 import DailyInfoComponent from "./DailyInfoComponent";
 
 const DailyInfo = (props) => {
+	let unit;
+
+	// check what is the unit measure
+	if (props.unitMeasure === "metric") {
+		unit = "°C";
+	} else {
+		unit = "°F";
+	}
+
 	const arrDays = [
 		"Sunday",
 		"Monday",
@@ -24,6 +33,7 @@ const DailyInfo = (props) => {
 					day={arrDays[index]}
 					temp={data.temp.max}
 					iconCode={data.weather[0].icon}
+					unitMeasure={unit}
 				/>
 			);
 		});

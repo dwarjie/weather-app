@@ -18,11 +18,11 @@ const PageContainer = () => {
 	const [unitMeasure, setUnitMeasure] = useChangeUnit();
 	const [weatherIcon, setWeatherIcon] = useWeatherIcon();
 
-	// run this function in the initial page load
-	useEffect(() => {
-		fetchAPI("Philippines");
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// // run this function in the initial page load
+	// useEffect(() => {
+	// 	fetchAPI("Philippines");
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 	// call request again when unit measure changed
 	useEffect(() => {
@@ -68,13 +68,15 @@ const PageContainer = () => {
 							currentWeather={currentWeatherData}
 							weatherIcon={weatherIcon}
 							unitChange={handUnitChange}
+							unitMeasure={unitMeasure}
 						/>
 						<SideInfo
 							currentWeather={currentWeatherData}
 							dailyWeather={dailWeatherData}
+							unitMeasure={unitMeasure}
 						/>
 					</div>
-					<DailyInfo dailyWeather={dailWeatherData} />
+					<DailyInfo dailyWeather={dailWeatherData} unitMeasure={unitMeasure} />
 				</div>
 			</div>
 		</div>
