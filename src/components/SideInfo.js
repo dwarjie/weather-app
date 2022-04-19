@@ -16,7 +16,7 @@ const SideInfo = (props) => {
 		return Math.round(props.currentWeather.windSpeed * (18 / 5));
 	};
 	return (
-		<div className="text-right sm: w-1/2 mt-12">
+		<div className="text-right w-1/2 mt-12">
 			<SideInfoComponent
 				title="Humidity"
 				value={`${props.currentWeather.humidity} %`}

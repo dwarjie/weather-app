@@ -59,11 +59,11 @@ const PageContainer = () => {
 	};
 
 	return (
-		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100vw] h-[auto]">
+		<div className="bg-cover bg-center bg-no-repeat bg-[url('./image/bg.jpg')] w-[100%] h-[100%]">
 			<div className="w-full h-full bg-overlay opacity-[60%]">
 				<div className="bg-none w-[90%] pt-6 mx-auto text-primaryColor">
 					<SearchBar onKeyEnter={searchPlace} />
-					<div className="sm: flex flex-row justify-between items-start">
+					<div className="flex flex-row justify-between items-start">
 						<MainInfo
 							currentWeather={currentWeatherData}
 							weatherIcon={weatherIcon}

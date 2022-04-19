@@ -40,8 +40,8 @@ const DailyInfo = (props) => {
 	};
 
 	return (
-		<div className="w-full sm: mt-16 pb-5">
-			<ul>{displayDaily()}</ul>
+		<div className="w-full mt-16 pb-5 xl:flex flex-row justify-end">
+			<ul className="xl:w-1/3">{displayDaily()}</ul>
 		</div>
 	);
 };

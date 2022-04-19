@@ -25,13 +25,15 @@ const MainInfo = (props) => {
 			.join(" ");
 	};
 	return (
-		<div className="text-left sm: mt-24">
+		<div className="text-left mt-24">
 			{props.weatherIcon}
-			<h2 className="font-semibold sm: text-[1.5rem]">
+			<h2 className="font-semibold text-[1.5rem]">
 				{capitalizeWord(props.currentWeather.weatherDesc)}
 			</h2>
-			<h4 className="sm: text-base">{props.currentWeather.placeName}</h4>
-			<h1 className="font-bold sm: text-[2.5rem]">{`${Math.round(
+			<h4 className="text-base xl:text-[2rem]">
+				{props.currentWeather.placeName}
+			</h4>
+			<h1 className="font-bold text-[2.5rem] xl:text-[6rem]">{`${Math.round(
 				props.currentWeather.weatherTemp
 			)}${unit}`}</h1>
 			<button

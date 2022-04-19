@@ -13,9 +13,9 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<div>
+		<div className="flex flex-row justify-end">
 			<input
-				className="bg-transparent border-primaryColor border-b-2 w-full"
+				className="bg-transparent border-primaryColor border-b-2 w-full xl:w-1/3"
 				type="text"
 				placeholder="Search Place"
 				value={inputPlace.place}
