@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/dwarjie/weather-app/static/css/main.51f75138.css",
-    "main.js": "/dwarjie/weather-app/static/js/main.6e55e0f8.js",
-    "static/media/bg.jpg": "/dwarjie/weather-app/static/media/bg.3a99dc7ef5bcafec295c.jpg",
-    "index.html": "/dwarjie/weather-app/index.html",
-    "main.51f75138.css.map": "/dwarjie/weather-app/static/css/main.51f75138.css.map",
-    "main.6e55e0f8.js.map": "/dwarjie/weather-app/static/js/main.6e55e0f8.js.map"
+    "main.css": "/dwarjie/weather-app/tree/gh-deploy/static/css/main.558126ab.css",
+    "main.js": "/dwarjie/weather-app/tree/gh-deploy/static/js/main.6e55e0f8.js",
+    "static/media/bg.jpg": "/dwarjie/weather-app/tree/gh-deploy/static/media/bg.3a99dc7ef5bcafec295c.jpg",
+    "index.html": "/dwarjie/weather-app/tree/gh-deploy/index.html",
+    "main.558126ab.css.map": "/dwarjie/weather-app/tree/gh-deploy/static/css/main.558126ab.css.map",
+    "main.6e55e0f8.js.map": "/dwarjie/weather-app/tree/gh-deploy/static/js/main.6e55e0f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.51f75138.css",
+    "static/css/main.558126ab.css",
     "static/js/main.6e55e0f8.js"
   ]
 }
