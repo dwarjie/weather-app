@@ -15,6 +15,7 @@ const MainInfo = (props) => {
 	};
 
 	const capitalizeWord = (str) => {
+		if (str === undefined) return;
 		return str
 			.toLowerCase()
 			.split(" ")
